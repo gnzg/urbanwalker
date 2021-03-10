@@ -6,4 +6,4 @@ function onRequest(request, response) {
     response.end();
 };
 
-http.createServer(onRequest).listen(1337, 'localhost');
+http.createServer(onRequest).listen(1337, '0.0.0.0');
