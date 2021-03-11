@@ -1,11 +1,7 @@
 var http = require('http');
-var events = require('events');
-var emitter = new events.EventEmitter();
 var path = require('path');
 
 path.resolve(process.cwd(), '.env');
-
-require('dotenv').config();
 
 function onRequest(request, response) {
     try {
@@ -18,11 +14,3 @@ function onRequest(request, response) {
 }
 
 http.createServer(onRequest).listen(1337, '0.0.0.0');
-
-// Emitter events
-emitter.on('logging', data => {
-    console.log('Logging', data);
-});
-
-// Emitter calls
-emitter.emit('logging', 'Hello');
