@@ -24,4 +24,3 @@ emitter.on('logging', data => {
 });
 
 emitter.emit('logging', 'Hello');
-emitter.emit('logging', process.env.API_URI);
