@@ -19,8 +19,10 @@ function onRequest(request, response) {
 
 http.createServer(onRequest).listen(1337, '0.0.0.0');
 
+// Emitter events
 emitter.on('logging', data => {
     console.log('Logging', data);
 });
 
+// Emitter calls
 emitter.emit('logging', 'Hello');
