@@ -1,8 +1,5 @@
 require('dotenv').config();
 var http = require('http');
-var path = require('path');
-
-path.resolve(process.cwd(), '.env');
 
 function onRequest(request, response) {
     try {
