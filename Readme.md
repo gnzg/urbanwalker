@@ -17,7 +17,7 @@ npm install
 
 Create an `.env` file in the project root directory and supply it your MongoDB credentials in the below format
 ```bash
-API_URI=<credentialsAndMongoDbURI>
+DB_URI=<credentialsAndMongoDbURI>
 ```
 
 Once that is done, start the server

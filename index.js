@@ -15,7 +15,7 @@ const World = require('./model/World');
 async function start() {
     try {
         await mongoose.connect(
-            process.env.API_URI, {
+            process.env.DB_URI, {
             useNewUrlParser: true,
             useFindAndModify: false,
             useUnifiedTopology: true
