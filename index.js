@@ -20,7 +20,12 @@ async function start() {
 
         app.listen(PORT, () => {
             console.log('Server is listening for requests...');
+            
+            // clear terminal window
+            console.log('\033[2J');
+            console.log("URBANWALKER v.0.1 \n#################\n");
         });
+       
 
     } catch (e) {
         console.log('Error:', e);
