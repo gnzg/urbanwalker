@@ -8,15 +8,18 @@ const generateEvent = require('./world/generateEvent');
 
 async function initWorld() {
 
-    let world = await World.find({});
+    // check whether the world entity already exists
+    let world = await World.findOne();
 
-    // generate new world, or load previously saved world
-    if (world.length > 0) { 
+    // if it does, load previously saved world
+    if (world) { 
         emitter.emit('logging', 'Found a previously saved world.');
-        let existingWorld = world[0];
+        let existingWorld = world;
         console.log("Welcome to", existingWorld.name + ", a place with a total of", existingWorld.total_critters, "living beings.");
-        
-    } else {
+    
+    } 
+    // otherwise, generate a new world
+    else {
         emitter.emit('logging', 'No world generated yet.');
         
         world = new World({
@@ -36,7 +39,12 @@ async function initWorld() {
         });
     }
 
-    generateEvent();
+    // attempt to load the world entity from db
+    // and generate a new world event
+    World.findOne()
+    .then((resolve, reject) => {
+        generateEvent();
+    });
 }
 
 module.exports = initWorld;

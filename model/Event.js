@@ -13,6 +13,9 @@ const schema = new Schema({
         type: Number,
         require: true
     },
+    nearby_items: {
+        type: Array
+    },
     available_actions: {
         type: Array,
         required: true
