@@ -1,9 +1,9 @@
 # Urbanwalker
 
 ## About
-Urbanwalker is a simplistic game intended as a technical demnostration of cloud-based RESTful communication via a NEM stack (Node.js, Express and MongoDB).
+Urbanwalker is a simplistic game intended as a technical demnostration of cloud-based RESTful communication via a NEM stack (Node.js, Express and MongoDB Atlas).
 
-In this game, the protagonist makes his way across a post-apocalyptic megapolis where every interaction with the world is a RESTful request under the hood.
+In this game, the protagonist makes his way across a post-apocalyptic megapolis where every interaction with the world is composed of one or more RESTful request under the hood.
 
 <br/>
 
@@ -15,7 +15,7 @@ First, install dependencies
 npm install
 ```
 
-Create an `.env` file in the project root directory and supply it your MongoDB credentials in the below format
+Create an `.env` file in the project root directory and supply it your MongoDB Atlas credentials in the below format
 ```bash
 DB_URI=<credentialsAndMongoDbURI>
 ```
