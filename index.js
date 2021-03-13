@@ -23,7 +23,7 @@ async function start() {
             
             // clear terminal window
             console.log('\033[2J');
-            console.log("URBANWALKER v.0.1 \n#################\n");
+            console.log("\x1b[32m " + "URBANWALKER v.0.1", "\x1b[0m" + "\n #################\n");
         });
        
 
