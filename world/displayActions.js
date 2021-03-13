@@ -7,6 +7,9 @@ function displayActions(actions, event = undefined) {
     let actionsMinusOne = actions.join(", ");
 
     console.log("You can", actionsMinusOne, "or", lastAction);
+
+    // revert to original array
+    actions = actions.push(lastAction);
 }
 
 
