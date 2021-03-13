@@ -1,22 +1,19 @@
 const World = require('../../model/World');
 const emitter = require('../../emitter');
 
-async function sleep(current_time) {
+async function sleep() {
     console.log("You've slept for 8 hours.");
 
     // Update time in the world
-    let world = await World.updateOne({
-        time_of_day: current_time + 8
-    },
-    (err, rawResponse) => {
-        emitter.emit("error", "Failed to update world time!", err, "\n" + rawResponse);
-    })
-    .then(value => {
-        console.log('value', value);
-        // re-load world entity from db
-        console.log("It is now", world.time_of_day);
-    });
+    let world = await World.findOne();
 
+    // show meaningful output of time
+    let currentTime = world.time_of_day + 8 > 24 ? (world.time_of_day + 8) % 8 : world.time_of_day + 8;
+
+    world.time_of_day = currentTime;
+    await world.save();
+
+    console.log("It is now", world.time_of_day, "O'clock.");
 }
 
 module.exports = sleep;
