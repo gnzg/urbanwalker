@@ -1,12 +1,10 @@
 // global mechanics
 const emitter = require('./emitter');
-const readInput = require('./readInput');
 const diceRoll = require('./diceRoll');
 
 // game-related modules
 const World = require('./model/World');
 const generateEvent = require('./world/generateEvent');
-const displayActions = require('./world/displayActions');
 
 async function initWorld() {
 
@@ -37,12 +35,8 @@ async function initWorld() {
             }
         });
     }
-    // append events and actions to world object
-    world =  { ...world, generateEvent, displayActions, readInput };
 
-    world.generateEvent();
-    world.displayActions(["Look around", "Sleep", "Search for items"]);
-    world.readInput("What will you do?");
+    generateEvent();
 }
 
 module.exports = initWorld;

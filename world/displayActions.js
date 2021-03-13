@@ -1,4 +1,4 @@
-function displayActions(actions, context = undefined) {
+function displayActions(actions, event = undefined) {
     
     // save last action
     let lastAction = actions[actions.length-1];
