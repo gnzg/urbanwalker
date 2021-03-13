@@ -13,10 +13,17 @@ async function initWorld() {
 
     // if it does, load previously saved world
     if (world) { 
-        emitter.emit('logging', 'Found a previously saved world.');
-        let existingWorld = world;
-        console.log("Welcome to", existingWorld.name + ", a place with a total of", existingWorld.total_critters, "living beings.");
-    
+        // has the world been previously generated?
+        if (world.is_generated) {
+            emitter.emit('logging', 'Found a previously saved world.');
+        } else {
+            console.log("Welcome to", world.name + ", a place with a total of", world.total_critters, "living beings.");
+            world.is_generated = true; 
+            world.save();
+        }
+        
+        // and generate a new world event
+        generateEvent();
     } 
     // otherwise, generate a new world
     else {
@@ -24,8 +31,9 @@ async function initWorld() {
         
         world = new World({
             name: "City 2021",
-            time: "Midday",
-            total_critters: diceRoll(1000, 500)
+            time_of_day: 12,
+            total_critters: diceRoll(1000, 500),
+            is_generated: false
         });
 
         world.save()
@@ -34,17 +42,10 @@ async function initWorld() {
                 reject(new Error("Error generating world! Check DB connection."));
             } else {
                 console.log("Generating a new world...");
-                console.log("Welcome to", world.name + ", a place with a total of", world.total_critters, "living beings.");
+                initWorld();
             }
         });
     }
-
-    // attempt to load the world entity from db
-    // and generate a new world event
-    World.findOne()
-    .then((resolve, reject) => {
-        generateEvent();
-    });
 }
 
 module.exports = initWorld;

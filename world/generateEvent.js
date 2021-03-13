@@ -1,6 +1,8 @@
 const Event = require('../model/Event');
 const displayActions = require('../world/displayActions');
 const readInput = require('../readInput');
+const allActions = require('./actions');
+const emitter = require('../emitter');
 
 async function generateEvent() {
     
@@ -24,7 +26,26 @@ async function generateEvent() {
     console.log(event_wakingup.description);
 
     displayActions(event_wakingup.available_actions);
-    readInput("What will you do?", event_wakingup);
+    
+    let protagonist_action = new Promise((resolve, reject) => {
+        const selected_action = readInput("What will you do?", event_wakingup);
+        if (selected_action !== undefined) {
+            resolve(selected_action);
+        }
+        reject();
+    });
+    
+    protagonist_action.then( value => {
+        // if resolved successfully
+        if (value === "Sleep") {
+            allActions.sleep();
+        }
+    },
+    // if the promise is rejected
+    rejectionReason => {
+        emitter.emit("error", "Failed to perform selected action!");
+    }
+    );
 }
 
 module.exports = generateEvent;

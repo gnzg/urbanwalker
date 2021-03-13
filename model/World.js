@@ -5,9 +5,13 @@ const schema = new Schema({
         type: String,
         required: true
     },
-    time: {
-        type: String,
-        require: true
+    time_of_day: {
+        type: Number,
+        required: true
+    },
+    is_generated: {
+        type: Boolean,
+        required: true
     },
     total_critters: {
         type: Number,
