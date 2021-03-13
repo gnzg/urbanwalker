@@ -5,17 +5,21 @@ const schema = new Schema({
         type: String,
         required: true
     },
-    time: {
+    description: {
         type: String,
+        required: true
+    },
+    timestamp: {
+        type: Number,
         require: true
     },
-    total_critters: {
-        type: Number,
+    available_actions: {
+        type: Array,
         required: true
     }
 },
 {
-    collection: 'world'
+    collection: 'events'
 });
 
-module.exports = model('World', schema);
+module.exports = model('Event', schema);

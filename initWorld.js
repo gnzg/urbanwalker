@@ -3,15 +3,16 @@ const emitter = require('./emitter');
 const readInput = require('./readInput');
 const diceRoll = require('./diceRoll');
 
-// game 
+// game-related modules
 const World = require('./model/World');
-const generateEvent = require('./world/events');
+const generateEvent = require('./world/generateEvent');
 const displayActions = require('./world/displayActions');
 
 async function initWorld() {
 
     let world = await World.find({});
 
+    // generate new world, or load previously saved world
     if (world.length > 0) { 
         emitter.emit('logging', 'Found a previously saved world.');
         let existingWorld = world[0];
@@ -29,17 +30,19 @@ async function initWorld() {
         world.save()
         .then((resolve, reject) => {
             if (reject) {
-                reject(new Error("Error generating world!"));
+                reject(new Error("Error generating world! Check DB connection."));
             } else {
                 console.log("Generating a new world...");
                 console.log("Welcome to", world.name + ", a place with a total of", world.total_critters, "living beings.");
             }
         });
     }
+    // append events and actions to world object
+    world =  { ...world, generateEvent, displayActions, readInput };
 
-    generateEvent();
-    displayActions(["Look around", "Sleep", "Search for items"]);
-    readInput("What will you do?");
+    world.generateEvent();
+    world.displayActions(["Look around", "Sleep", "Search for items"]);
+    world.readInput("What will you do?");
 }
 
 module.exports = initWorld;
