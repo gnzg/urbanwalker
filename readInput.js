@@ -23,7 +23,6 @@ function readInput(q, currentEvent, callback = undefined) {
         let temporaryInput = input.replace(/\s/g, '_');
 
         if (temporaryActions.indexOf(temporaryInput) >= 0) {
-            //rl.write(null, { ctrl: true, name: 'u' });
             console.log("You decide to", input + ".");
         }
         else {
