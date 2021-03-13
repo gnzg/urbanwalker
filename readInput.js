@@ -1,8 +1,8 @@
 const readline = require('readline');
 const emitter = require('./emitter');
 
-function readInput(message, callback = undefined) {
-    if (message === undefined) {
+function readInput(question, currentEvent, callback = undefined) {
+    if (question === undefined) {
         emitter.emit("error", "readInput - missing or invalid parameters!");
         return false;
     }
@@ -12,8 +12,14 @@ function readInput(message, callback = undefined) {
         output: process.stdout
     });
 
-    rl.question(message + " ", data => {
-        console.log(data);
+    rl.question(question + " ", data => {
+        if (currentEvent.available_actions.indexOf(data) > 0) {
+            console.log("You decide to", data + ".");
+        }
+        else {
+            console.log("Invalid input!");
+        }
+        rl.close();
     });
 
     if (callback !== undefined) {

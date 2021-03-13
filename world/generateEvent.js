@@ -10,7 +10,7 @@ async function generateEvent() {
     // Check whether waking up event already took place
     let event_wakingup = await Event.findOne({ name: "waking up"});
     
-    if (event_wakingup) {
+    if (!event_wakingup) {
         event_wakingup = new Event({
             name: "waking up",
             description: "You wake up at the feet of a massive pile of rubble at the center of what used to be a shoping mall. Rays of light illuminate the empty belly of the building through broken glass.",
@@ -24,7 +24,7 @@ async function generateEvent() {
     console.log(event_wakingup.description);
 
     displayActions(event_wakingup.available_actions);
-    readInput("What will you do?");
+    readInput("What will you do?", event_wakingup);
 }
 
 module.exports = generateEvent;
