@@ -35,16 +35,14 @@ async function initWorld() {
             total_critters: diceRoll(1000, 500),
             is_generated: false
         });
-
-        world.save()
-        .then((resolve, reject) => {
-            if (reject) {
-                reject(new Error("Error generating world! Check DB connection."));
-            } else {
-                console.log("Generating a new world...");
-                initWorld();
-            }
-        });
+        
+        try {
+            await world.save();
+            console.log("Generating a new world...");
+            initWorld();
+        } catch (err) {
+            emitter.emit("error", "Error generating world! Check DB connection.");
+        }
     }
 }
 
