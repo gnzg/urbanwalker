@@ -28,15 +28,13 @@ async function initWorld() {
     // otherwise, generate a new world
     else {
         emitter.emit('logging', 'No world generated yet.');
-        
-        world = new World({
-            name: "City 2021",
-            time_of_day: 12,
-            total_critters: diceRoll(1000, 500),
-            is_generated: false
-        });
-        
         try {
+            world = new World({
+                name: "City 2021",
+                time_of_day: 12,
+                total_critters: diceRoll(1000, 500),
+                is_generated: false
+            });
             await world.save();
             console.log("Generating a new world...");
             initWorld();
