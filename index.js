@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const initWorld = require('./initWorld');
 
-const PORT = process.env.PORT || 1337;
+const PORT = process.env.PORT || console.error("Error: No port provided!");
 const app = express();
 
 async function start() {
@@ -23,7 +23,7 @@ async function start() {
             
             // clear terminal window
             console.log('\033[2J');
-            console.log("\x1b[32m " + "URBANWALKER v.0.1", "\x1b[0m" + "\n #################\n");
+            console.log("\x1b[32m " + "URBANWALKER v.1.0.1", "\x1b[0m" + "\n #################\n");
         });
        
 

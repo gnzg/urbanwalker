@@ -11,4 +11,4 @@ function onRequest(request, response) {
     }
 }
 
-http.createServer(onRequest).listen(1337, '0.0.0.0');
+http.createServer(onRequest).listen(process.env.PORT, '0.0.0.0');
