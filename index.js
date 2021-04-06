@@ -16,17 +16,15 @@ async function start() {
             useUnifiedTopology: true
         })
         .then(() => console.log("Database Connected Successfully"))
-        .catch(err => console.log(err));
-
-        app.listen(PORT, () => {
-            console.log('Server is listening for requests...');
-            
-            // clear terminal window
-            console.log('\033[2J');
-            console.log("\x1b[32m " + "URBANWALKER v.1.0.1", "\x1b[0m" + "\n #################\n");
+        .then(() => {
+            app.listen(process.env.PORT, () => {
+                console.log('Server is listening for requests...');
+                
+                // clear terminal window
+                console.log('\033[2J');
+                console.log("\x1b[32m " + "URBANWALKER v.1.0.1", "\x1b[0m" + "\n #################\n");
+            });
         });
-       
-
     } catch (e) {
         console.log('Error:', e);
     }
