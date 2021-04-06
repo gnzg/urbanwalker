@@ -18,9 +18,13 @@ npm install
 Create an `.env` file in the project root directory and supply it your MongoDB Atlas credentials in the below format
 ```bash
 DB_URI=<credentialsAndMongoDbURI>
+PORT=<availablePortNumber>
 ```
 
 Once that is done, start the server
 ```bash
 npm start
 ```
+
+## MongoDB Atlas
+In a new cluster, create a collection titled `world` and make sure your IP is whitelisted for access.
