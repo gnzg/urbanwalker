@@ -4,7 +4,7 @@ var lookAround = require('./lookAround');
 const performAction = action => {
     if (action === "sleep") {
         sleep();
-    } else if (action === "look_around"){
+    } else if (action === "look_around" || action === "search_for_items"){
         lookAround();
     }
     // TODO: generate a new event... (generateEvent)
