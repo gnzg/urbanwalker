@@ -1,7 +1,5 @@
-function displayActions(actions, event = undefined) {
-    
+function displayActions(actions) {
     actions = actions.map(item => "\x1b[33m" + item + "\x1b[0m");
-    
     // save last action
     let lastAction = actions[actions.length-1];
     // modify array to n-1 of original length
@@ -13,6 +11,5 @@ function displayActions(actions, event = undefined) {
     // revert to original array
     actions = actions.push(lastAction);
 }
-
 
 module.exports = displayActions;

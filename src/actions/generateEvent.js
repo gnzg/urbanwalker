@@ -1,8 +1,6 @@
 const Event = require('../objects/event');
 const emitter = require('../objects/emitter');
-const displayActions = require('./displayActions');
 const readInput = require('./readInput');
-const allActions = require('./index');
 
 async function generateEvent() {
     
@@ -11,8 +9,7 @@ async function generateEvent() {
 
     // Check whether waking up event already took place
     let event_wakingup = await Event.findOne({ name: "waking up"});
-    
-    if (!event_wakingup) {
+    if (event_wakingup === null) {
         event_wakingup = new Event({
             name: "waking up",
             description: "You wake up at the feet of a massive pile of rubble at the center of what used to be a shoping mall. Rays of light illuminate the empty belly of the building through broken glass.",
@@ -20,32 +17,16 @@ async function generateEvent() {
             available_actions: ["Look around", "Sleep", "Search for items"],
             nearby_items: ["crowbar", "broken cellphone", "water bottle"]
         });
+        // POST to db
         await event_wakingup.save();
+        // show event description
+        console.log(event_wakingup.description);
+        
+    } else {
+        console.log("You have already woken up!");
     }
-
-    console.log(event_wakingup.description);
-
-    displayActions(event_wakingup.available_actions);
     
-    let protagonist_action = new Promise((resolve, reject) => {
-        const selected_action = readInput("What will you do?", event_wakingup);
-        if (selected_action !== undefined) {
-            resolve(selected_action);
-        }
-        reject();
-    });
-    
-    protagonist_action.then( value => {
-        // if resolved successfully
-        if (value === "Sleep") {
-            allActions.sleep();
-        }
-    },
-    // if the promise is rejected
-    rejectionReason => {
-        emitter.emit("error", "Failed to perform selected action!");
-    }
-    );
+    readInput("What will you do?");
 }
 
 module.exports = generateEvent;
