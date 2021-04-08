@@ -1,6 +1,6 @@
 const { rejects } = require('assert');
 const readline = require('readline');
-const emitter = require('./emitter');
+const emitter = require('../objects/emitter');
 
 function readInput(q, currentEvent) {
     const selected_action = new Promise((resolve, reject) => {

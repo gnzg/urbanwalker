@@ -1,10 +1,10 @@
 // global mechanics
-const emitter = require('./emitter');
+const emitter = require('../objects/emitter');
 const diceRoll = require('./diceRoll');
 
 // game-related modules
-const World = require('./model/World');
-const generateEvent = require('./world/generateEvent');
+const World = require('../objects/World');
+const generateEvent = require('../actions/generateEvent');
 
 async function initWorld() {
 

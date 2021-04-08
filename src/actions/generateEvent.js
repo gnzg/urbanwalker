@@ -1,8 +1,8 @@
-const Event = require('../model/Event');
-const displayActions = require('../world/displayActions');
-const readInput = require('../readInput');
-const allActions = require('./actions');
-const emitter = require('../emitter');
+const Event = require('../objects/event');
+const emitter = require('../objects/emitter');
+const displayActions = require('./displayActions');
+const readInput = require('./readInput');
+const allActions = require('./index');
 
 async function generateEvent() {
     

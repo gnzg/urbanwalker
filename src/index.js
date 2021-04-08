@@ -2,9 +2,9 @@ require("./server.js");
 const express = require("express");
 const mongoose = require("mongoose");
 
-const initWorld = require('./initWorld');
+const initWorld = require('./actions/initWorld');
 
-const PORT = process.env.PORT || console.error("Error: No port provided!");
+const port = process.env.PORT || console.error("Error: No port provided!");
 const app = express();
 
 async function start() {
@@ -17,7 +17,7 @@ async function start() {
         })
         .then(() => console.log("Database Connected Successfully"))
         .then(() => {
-            app.listen(process.env.PORT, () => {
+            app.listen(port, () => {
                 console.log('Server is listening for requests...');
                 
                 // clear terminal window
