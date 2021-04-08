@@ -7,8 +7,8 @@ const performAction = action => {
     } else if (action === "look_around"){
         lookAround();
     }
-    // TODO: now a new event... (generateEvent)
-    console.log("You decide to", action + ".");
+    // TODO: generate a new event... (generateEvent)
+    console.log("You decide to", action.replace(/_/g, ' ') + ".");
 };
 
 module.exports = performAction;

@@ -10,7 +10,7 @@ async function lookAround() {
     items.splice(items.length-1, 1);
     let itemsMinusOne = items.join(", ");
 
-    console.log("You look around and find", itemsMinusOne, "and", lastItem);
+    console.log("You look around and find a", itemsMinusOne, "and a", lastItem + '.');
 }
 
 module.exports = lookAround;
