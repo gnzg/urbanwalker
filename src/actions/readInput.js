@@ -22,7 +22,7 @@ async function readInput(q) {
     });
     
     // display available actions
-    displayActions(latestEvent.available_actions);
+    displayActions();
     process.stdout.write(q + " ");
     
     rl.question("", input => {

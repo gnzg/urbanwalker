@@ -1,5 +1,9 @@
-function displayActions(actions) {
-    actions = actions.map(item => "\x1b[33m" + item + "\x1b[0m");
+const Event = require('../objects/event');
+
+async function displayActions() {
+    let latestEvent = await Event.findOne().sort({timestamp : -1});
+
+    actions = latestEvent.available_actions.map(item => "\x1b[33m" + item + "\x1b[0m");
     // save last action
     let lastAction = actions[actions.length-1];
     // modify array to n-1 of original length
