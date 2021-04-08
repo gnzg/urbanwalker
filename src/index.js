@@ -1,4 +1,4 @@
-require("./server.js");
+require("./objects/server.js");
 const express = require("express");
 const mongoose = require("mongoose");
 
