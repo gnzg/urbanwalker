@@ -1,7 +1,15 @@
 const Event = require('../objects/event');
 
 async function lookAround() {
-    let latestEvent = await Event.findOne().sort({timestamp : -1});
+
+    // retrieve info about latest event from db
+     let latestEvent;
+     try { 
+         latestEvent = await Event.findOne().sort({timestamp : -1});
+     }
+     catch(e) {
+         Emitter.emit("error", "Failed to establish latest event!");
+     }
 
     let items = latestEvent.nearby_items.map(item => "\x1b[35m" + item + "\x1b[0m");
     // save last action
