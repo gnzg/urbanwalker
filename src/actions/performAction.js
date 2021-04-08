@@ -6,6 +6,7 @@ const performAction = action => {
         sleep();
     }
     // TODO: now a new event... (generateEvent)
+    console.log("You decide to", action + ".");
 };
 
 module.exports = performAction;

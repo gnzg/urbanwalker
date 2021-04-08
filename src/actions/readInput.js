@@ -40,13 +40,7 @@ async function readInput(q) {
             emitter.emit("error", "Failed to perform selected action!");
             readInput("What will you do?");
         }
-        
-        if (temporaryActions.indexOf(temporaryInput) >= 0) {
-            console.log("You decide to", input + ".");
-        }
-        else {
-            emitter.emit("error", "readInput - invalid input!");
-        }
+
         rl.close();
     });
 }
