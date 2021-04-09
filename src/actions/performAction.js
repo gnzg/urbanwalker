@@ -2,11 +2,11 @@ const Event = require('../objects/event');
 const Emitter = require('../objects/emitter');
 const sleep = require('./sleep');
 const lookAround = require('./lookAround');
-const readInput = require('./readInput');
+const generateEvent = require('./generateEvent');
 
 async function performAction (action)  {
-
-    // retrieve info about latest event from db
+    
+    // retrieve latest event from db
     let latestEvent;
     try { 
         latestEvent = await Event.findOne().sort({timestamp : -1});
@@ -20,7 +20,7 @@ async function performAction (action)  {
     let actions = latestEvent.available_actions;
     let temporaryActions = actions.map(item => item.replace(/\s/g, '_').toLowerCase());
     action = action.replace(/\s/g, '_').toLowerCase();
-
+    
     if (temporaryActions.indexOf(action) < 0) {
         Emitter.emit("error", "Failed to perform selected action!");
         throw new Error(400);
@@ -31,8 +31,8 @@ async function performAction (action)  {
     } else if (action === "look_around" || action === "search_for_items"){
         lookAround();
     }
-    // TODO: generate a new event... (generateEvent)
-    console.log("You decide to", action.replace(/_/g, ' ') + ".");
+    //console.log("You decide to", action.replace(/_/g, ' ') + ".\n");
+    generateEvent();
 }
 
 module.exports = performAction;

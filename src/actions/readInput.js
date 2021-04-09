@@ -22,12 +22,12 @@ function readInput(q) {
         performAction(input)
         .then(
             // success
-            () => { 
+            () => {
                 rl.close();
              },
              // error
-             (error) => { 
-                //console.log('error', error);
+             (error) => {
+                console.log('error', error);
                 readInput(input);
              }
         );
