@@ -15,16 +15,18 @@ async function readInput(q) {
     });
     
     // display available actions
-    displayActions();
+    await displayActions();
     process.stdout.write(q + " ");
-    let payload;
     
-    payload = await rl.question("", input => {
+    let payload;
+
+    rl.question("", input => {
         performAction(input)
         .then(
             // success
-            (success) => {
-                console.log('success payload:', success);
+            (payload_data) => {
+                console.log('success payload:', payload_data);
+                payload = payload_data;
                 rl.close();
             },
             // error
@@ -32,6 +34,11 @@ async function readInput(q) {
                 console.log('readInput: error', error);
                 readInput(input);
             });
+    });
+    return new Promise(resolve => {
+        if (payload) {
+          resolve(payload);
+        }
     });
 }
     
