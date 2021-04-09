@@ -1,5 +1,5 @@
 const Event = require('../objects/event');
-const emitter = require('../objects/emitter');
+const Emitter = require('../objects/emitter');
 const readInput = require('./readInput');
 
 async function generateEvent() {
@@ -31,7 +31,18 @@ async function generateEvent() {
         Emitter.emit("error", "Failed to generate new event!");
     }
     
-    readInput("What will you do?");
+    readInput("What will you do?")
+    .then(
+        // success
+        (success) => {
+            // TODO: generate a new event...
+            
+            console.log('generateEvent: success payload', success);
+        }, 
+        // error
+        (error) => {
+            console.log('readInput: error', error);
+        });
 }
 
 module.exports = generateEvent;

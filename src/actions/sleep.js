@@ -1,5 +1,4 @@
 const World = require('../objects/World');
-const emitter = require('../objects/emitter');
 
 async function sleep() {
     console.log("You've slept for 8 hours.");

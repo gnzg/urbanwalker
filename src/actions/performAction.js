@@ -2,7 +2,6 @@ const Event = require('../objects/event');
 const Emitter = require('../objects/emitter');
 const sleep = require('./sleep');
 const lookAround = require('./lookAround');
-const generateEvent = require('./generateEvent');
 
 async function performAction (action)  {
     
@@ -32,7 +31,7 @@ async function performAction (action)  {
         lookAround();
     }
     //console.log("You decide to", action.replace(/_/g, ' ') + ".\n");
-    generateEvent();
+    return action;
 }
 
 module.exports = performAction;
