@@ -1,7 +1,7 @@
 # Urbanwalker
 
 ## About
-Urbanwalker is a simplistic game intended as a technical demnostration of RESTful communication via a NEM stack (Node.js, Express and MongoDB Atlas).
+Urbanwalker is a simplistic game intended as a technical demnostration for RESTful communication via a NEM stack (Node.js, Express and MongoDB Atlas).
 
 In this game, the protagonist makes his way across a post-apocalyptic megapolis where every interaction with the world is composed of one or more RESTful requests under the hood.
 
